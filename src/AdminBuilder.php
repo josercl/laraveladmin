@@ -12,18 +12,22 @@ class AdminBuilder{
     protected $idField="id";
     protected $list;
     protected $fields=[
-        [
-            "title"=>"Field Title",
+        /*[
+            "header"=>"Field Header",
             "name"=>"Field Name"
-        ]
+        ]*/
     ];
     protected $operations=[
-        [
+        /*[
             "url"=>null,
             "action"=>null,
             "text"=>"This is text",
-            "attributes"=>[]
-        ]
+            "attributes"=>[],
+            "condition"=>[
+                "column"=>"column_name",
+                "test"=>" > 1"
+            ]
+        ]*/
     ];
 
     public function __construct(UrlGenerator $url = null, Factory $view)
@@ -43,22 +47,32 @@ class AdminBuilder{
     public function setOperations($operations){$this -> operations = $operations;}
 
     public function showOperation($record, $operation){
-        //$operation=$this->operations[$n];
         $operation_url=null;
+        $html="";
+        $show=TRUE;
+
         $id=$this->idField;
 
-        if(isset($operation["action"]) && !is_null($operation["action"])){
-            $operation_url=$this->url->action($operation["action"],[$record->$id]);
-        }
-        if(isset($operation["url"]) && !is_null($operation["url"])){
-            $operation_url=$this->url->to($operation["url"],[$record->$id]);
+        if(isset($operation["condition"]) && is_array($operation["condition"])){
+            $condition_field=$operation["condition"]["column"];
+            $value=$record->$condition_field;
+            eval("\$show=(".$value.$operation["condition"]["test"].");");
         }
 
-        $html='<a href="'.$operation_url.'"';
-        foreach($operation["attributes"] as $attr=>$val){
-            $html.=' '.$attr.'="'.$val.'"';
+        if($show){
+
+            if(isset($operation["action"]) && !is_null($operation["action"])){
+                $operation_url=$this->url->action($operation["action"],[$record->$id]);
+            }else if(isset($operation["url"]) && !is_null($operation["url"])){
+                $operation_url=$this->url->to($operation["url"],[$record->$id]);
+            }
+
+            $html='<a href="'.$operation_url.'"';
+            foreach($operation["attributes"] as $attr=>$val){
+                $html.=' '.$attr.'="'.$val.'"';
+            }
+            $html.='>'.$operation["text"].'</a>';
         }
-        $html.='>'.$operation["text"].'</a>';
 
         return $html;
     }
