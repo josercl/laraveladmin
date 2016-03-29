@@ -2,6 +2,7 @@
     "name": "josercl/laraveladmin",
     "description": "Library to create admin tables",
     "homepage": "https://github.coim/josercl/laraveladmin",
+    "license": "MIT",
     "support": {
         "issues": "https://github.coim/josercl/laraveladmin/issues",
         "source": "https://github.coim/josercl/laraveladmin"
