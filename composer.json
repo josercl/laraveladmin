@@ -17,5 +17,11 @@
         "psr-4": {
             "Josercl\\Admin\\": "src/"
         }
+    },
+    "require": {
+        "php": ">=5.5.9",
+        "illuminate/http": "5.2.*",
+        "illuminate/routing": "5.2.*",
+        "illuminate/view": "5.2.*"
     }
 }
