@@ -1,0 +1,20 @@
+{
+    "name": "josercl/laraveladmin",
+    "description": "Library to create admin tables",
+    "homepage": "https://github.coim/josercl/laraveladmin",
+    "support": {
+        "issues": "https://github.coim/josercl/laraveladmin/issues",
+        "source": "https://github.coim/josercl/laraveladmin"
+    },
+    "authors": [
+        {
+            "name": "José Carrero",
+            "email": "josercl@gmail.com"
+        }
+    ],
+    "autoload":{
+        "psr-4": {
+            "Josercl\\Admin\\": "src/"
+        }
+    }
+}
