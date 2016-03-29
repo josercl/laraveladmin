@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers\Josercl\Admin;
+namespace Josercl\Admin;
 
 use Illuminate\Support\Facades\Facade;
 

@@ -1,5 +1,5 @@
 <?php
-namespace App\Providers\Josercl\Admin;
+namespace Josercl\Admin;
 
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\Routing\UrlGenerator;
