@@ -2,7 +2,7 @@
     <thead>
         <tr>
         @foreach(Admin::fields() as $field)
-            <th>{{$field['title']}}</th>
+            <th>{{$field['header']}}</th>
         @endforeach
             <th colspan="{{count(Admin::operations())}}">&nbsp;</th>
         </tr>

@@ -23,5 +23,6 @@
         "illuminate/http": "5.2.*",
         "illuminate/routing": "5.2.*",
         "illuminate/view": "5.2.*"
-    }
+    },
+    "minimum-stability": "dev"
 }
