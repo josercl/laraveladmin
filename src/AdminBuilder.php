@@ -26,7 +26,10 @@ class AdminBuilder{
             "condition"=>[
                 "column"=>"column_name",
                 "test"=>" > 1"
-            ]
+            ],
+            "alt_url"=>null,
+            "alt_action"=>null,
+            "alt_text"=>"This is text",
         ]*/
     ];
 
@@ -49,30 +52,37 @@ class AdminBuilder{
     public function showOperation($record, $operation){
         $operation_url=null;
         $html="";
-        $show=TRUE;
+        $condition=TRUE;
 
         $id=$this->idField;
 
         if(isset($operation["condition"]) && is_array($operation["condition"])){
             $condition_field=$operation["condition"]["column"];
             $value=$record->$condition_field;
-            eval("\$show=(".$value.$operation["condition"]["test"].");");
+            eval("\$condition=('".$value."'".$operation["condition"]["test"].");");
         }
 
-        if($show){
+        $url="url";
+        $action="action";
+        $text="text";
 
-            if(isset($operation["action"]) && !is_null($operation["action"])){
-                $operation_url=$this->url->action($operation["action"],[$record->$id]);
-            }else if(isset($operation["url"]) && !is_null($operation["url"])){
-                $operation_url=$this->url->to($operation["url"],[$record->$id]);
-            }
-
-            $html='<a href="'.$operation_url.'"';
-            foreach($operation["attributes"] as $attr=>$val){
-                $html.=' '.$attr.'="'.$val.'"';
-            }
-            $html.='>'.$operation["text"].'</a>';
+        if(!$condition){
+            $action="alt_".$action;
+            $operation_url="alt_".$operation_url;
+            $text="alt_".$text;
         }
+
+        if(isset($operation[$action]) && !is_null($operation[$action])){
+            $operation_url=$this->url->action($operation[$action],[$record->$id]);
+        }else if(isset($operation[$url]) && !is_null($operation[$url])){
+            $operation_url=$this->url->to($operation[$url],[$record->$id]);
+        }
+
+        $html='<a href="'.$operation_url.'"';
+        foreach($operation["attributes"] as $attr=>$val){
+            $html.=' '.$attr.'="'.$val.'"';
+        }
+        $html.='>'.$operation[$text].'</a>';
 
         return $html;
     }
