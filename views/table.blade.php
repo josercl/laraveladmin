@@ -13,7 +13,7 @@
             @foreach(Admin::fields() as $field)
             <td>
                 <?php $field_name=$field['name']?>
-                {!!$record->$field_name!!}
+                {!!Admin::processField($record,$field_name)!!}
             </td>
             @endforeach
 

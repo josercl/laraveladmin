@@ -13,10 +13,10 @@ class AdminServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadViewsFrom(__DIR__.'/../views', 'Admin');
+        $this->loadViewsFrom(__DIR__ . '/../views', 'Admin');
 
         $this->publishes([
-            __DIR__.'/../views' => resource_path('views/vendor/Admin')
+            __DIR__ . '/../views' => resource_path('views/vendor/Admin')
         ]);
     }
 

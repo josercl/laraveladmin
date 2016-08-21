@@ -49,6 +49,15 @@ class AdminBuilder{
     public function operations(){return $this -> operations;}
     public function setOperations($operations){$this -> operations = $operations;}
 
+    public function processField($record, $field_name,$field_separator="."){
+        $field_pieces = explode($field_separator,$field_name);
+        $value=$record;
+        foreach($field_pieces as $f){
+            $value = $value->$f;
+        }
+        return $value;
+    }
+
     public function showOperation($record, $operation){
         $operation_url=null;
         $html="";

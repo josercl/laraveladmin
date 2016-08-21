@@ -1,11 +1,11 @@
 {
     "name": "josercl/laraveladmin",
     "description": "Library to create admin tables",
-    "homepage": "https://github.coim/josercl/laraveladmin",
+    "homepage": "https://github.com/josercl/laraveladmin",
     "license": "MIT",
     "support": {
-        "issues": "https://github.coim/josercl/laraveladmin/issues",
-        "source": "https://github.coim/josercl/laraveladmin"
+        "issues": "https://github.com/josercl/laraveladmin/issues",
+        "source": "https://github.com/josercl/laraveladmin"
     },
     "authors": [
         {
